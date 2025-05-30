@@ -13,8 +13,12 @@ newman run Minha_API.postman_collection.json ^
 
 
 
+// Verifica se o status da resposta é 200
+pm.test("Status 200 OK", function () {
+    pm.response.to.have.status(200);;
+});
 
-
+REM Alteração para testar o webhook
 
 
 exit 0
