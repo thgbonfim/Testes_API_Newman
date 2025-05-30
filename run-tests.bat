@@ -13,5 +13,4 @@ newman run Minha_API.postman_collection.json ^
 
 
 
-
 exit 0
