@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "17101e13-c695-43aa-ba71-a3e70374a4e0",
+		"name": "Minha_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37781147"
+	},
+	"item": [
+		{
+			"name": "api_test",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Gerar um número aleatório de 1 a 10 (ID de usuário válido)\r",
+							"let id = Math.floor(Math.random() * 10) + 1;\r",
+							"pm.environment.set(\"userId\", id);\r",
+							"\r",
+							"console.log(\"Testando com ID:\", id);\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verifica se o status da resposta é 200\r",
+							"pm.test(\"Status 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verifica se a resposta tem a chave \"name\"\r",
+							"pm.test(\"Tem campo 'name'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"name\");\r",
+							"});\r",
+							"\r",
+							"// Armazena o nome do usuário como variável\r",
+							"let json = pm.response.json();\r",
+							"pm.environment.set(\"userName\", json.name);\r",
+							"\r",
+							"console.log(\"Nome do usuário:\", json.name);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
