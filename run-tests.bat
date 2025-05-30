@@ -11,4 +11,6 @@ newman run Minha_API.postman_collection.json ^
   -r cli,html ^
   --reporter-html-export newman\newman-run-report.html
 
+
+
 exit 0
